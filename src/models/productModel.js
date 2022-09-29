@@ -20,8 +20,15 @@ const create = async (name) => {
 }
 
 const update = async (name, id) => {
-  const [product] = await  connection.execute(
+  const [product] = await connection.execute(
     'UPDATE products SET name = ? WHERE id = ?', [name, id]
+  )
+  return product.affectedRows;
+}
+
+const remove = async (id) => {
+  const [product] = await connection.execute(
+    'DELETE FROM products WHERE id = ?', [id]
   )
   return product.affectedRows;
 }
@@ -30,5 +37,6 @@ module.exports = {
   getAll,
   getById,
   create,
-  update
+  update,
+  remove
 }

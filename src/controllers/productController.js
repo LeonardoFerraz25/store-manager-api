@@ -1,3 +1,4 @@
+const { message } = require('../schemas/productSchema');
 const productService = require('../services/productService');
 
 const SERVER_ERROR = { "message": "Internal server error" }
@@ -48,9 +49,24 @@ const update = async (req, res) => {
   }
 }
 
+const remove = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await productService.remove(id);
+    if(product.message) return res.status(400).json(product);
+    return res.status(200).json({
+      message: "produto deletado com sucesso"
+    })
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(SERVER_ERROR);
+  }
+}
+
 module.exports = {
   getAll,
   getById,
   create,
-  update
+  update,
+  remove
 }

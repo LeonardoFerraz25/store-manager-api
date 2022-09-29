@@ -34,7 +34,7 @@ const update = async (name, id) => {
 
   const product = await productModel.update(name, id);
   
-  if(product === 0) return {message: "Não foi possivel atualizar produto"}
+  if(product === 0) return {message: "Não foi possivel atualizar o produto"};
 
   const result = {
     id,
@@ -44,9 +44,18 @@ const update = async (name, id) => {
   return result;
 }
 
+const remove = async (id) => {
+  const product = productModel.remove(id);
+
+  if(product === 0) return {message: "Não foi possivel deletar o produto"};
+
+  return true;
+}
+
 module.exports = {
   getAll,
   getById,
   create,
-  update
+  update,
+  remove
 }
