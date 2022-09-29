@@ -37,7 +37,8 @@ describe("Testa a productModel", () => {
       const product = [{affectedRows: 1}];
       sinon.stub(connection, "execute").resolves(product);
       const id = 4;
-      const result = await productsModel.update(id);
+      const name = 'Produto1';
+      const result = await productsModel.update(name, id);
       expect(result).to.deep.equal(1);
     })
 
