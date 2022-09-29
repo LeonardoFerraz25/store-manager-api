@@ -27,8 +27,26 @@ const create = async (name) => {
   return result;
 }
 
+const update = async (name, id) => {
+  const isValidSchema = validateRequestProducSchema(name);
+  
+  if (isValidSchema.type) return isValidSchema;
+
+  const product = await productModel.update(name, id);
+  
+  if(product === 0) return {message: "Não foi possivel atualizar produto"}
+
+  const result = {
+    id,
+    name
+  }
+
+  return result;
+}
+
 module.exports = {
   getAll,
   getById,
-  create
+  create,
+  update
 }
