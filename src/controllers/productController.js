@@ -29,7 +29,19 @@ const getById = async (req, res) => {
   }
 }
 
+const create = async (req, res) => {
+  const { name } = req.body;
+  try {
+    const product = await productService.create(name);
+    return res.status(201).json(product)
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(SERVER_ERROR);
+  }
+}
+
 module.exports = {
   getAll,
-  getById
+  getById,
+  create
 }
