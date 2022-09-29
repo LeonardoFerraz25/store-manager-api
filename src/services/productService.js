@@ -7,13 +7,24 @@ const getAll = async () => {
 
 const getById = async (id) => {
   const product = await productModel.getById(id);
+  console.log(product)
   if(product.length === 0) {
     return false;
   }
   return product;
 }
 
+const create = async (name) => {
+  const productID = await productModel.create(name);
+  const result = [{
+    id: productID,
+    name: name
+  }]
+  return result;
+}
+
 module.exports = {
   getAll,
-  getById
+  getById,
+  create
 }
