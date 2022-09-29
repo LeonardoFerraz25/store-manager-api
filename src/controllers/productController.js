@@ -41,8 +41,22 @@ const create = async (req, res) => {
   }
 }
 
+const update = async (req, res) => {
+  const { id } = req.params;
+  const { name  } = req.body;
+  try {
+    const product = await productService.update(name,  id);
+    if(product.message) return res.status(400).json(product);
+    return res.status(200).json(product);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(SERVER_ERROR);
+  }
+}
+
 module.exports = {
   getAll,
   getById,
-  create
+  create,
+  update
 }
