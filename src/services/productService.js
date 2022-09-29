@@ -14,10 +14,10 @@ const getById = async (id) => {
 }
 
 const create = async (name) => {
-  const productID = await productModel.create(name);
+  const id = await productModel.create(name);
   const result = [{
-    id: productID,
-    name: name
+    id,
+    name,
   }]
   return result;
 }

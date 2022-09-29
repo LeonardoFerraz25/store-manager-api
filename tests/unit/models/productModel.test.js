@@ -13,7 +13,8 @@ describe("Testa a productModel", () => {
       const allProducts = [[...mocks.allProductsResponse]];
       sinon.stub(connection, "execute").resolves(allProducts);
       const result = await productsModel.getAll();
-      expect(result).to.deep.equal(allProducts);
+      const prds = [result]
+      expect(prds).to.deep.equal(allProducts);
     })
 
     it("testa getById", async () => {
