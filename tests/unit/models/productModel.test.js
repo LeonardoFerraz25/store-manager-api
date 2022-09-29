@@ -17,7 +17,7 @@ describe("Testa a productModel", () => {
 
     it("testa getById", async () => {
       sinon.stub(connection, "execute").resolves(mocks.productSearchIdResponse)
-      const result = await productsModel.getById();
+      const result = await productsModel.getById(1);
       expect(result).to.deep.equal(mocks.productSearchIdResponse);
     })
 
