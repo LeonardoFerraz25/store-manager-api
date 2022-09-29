@@ -3,22 +3,25 @@ const { describe } = require('mocha');
 const sinon = require('sinon');
 const mocks = require('../../mock');
 
-const connection = require("../../../models/connection");
-const productsModel = require("../../../models/productsModel");
+const connection = require("../../../src/models/connection");
+const productsModel = require("../../../src/models/productModel");
 
 describe("Testa a productModel", () => {
   describe("verifica se retorna todo os produtos", () => {
 
     it("Testa getAll", async () => {
-      sinon.stub(connection, "execute").resolves(mocks.allProductsResponse);
+      const allProducts = [[...mocks.allProductsResponse]];
+      sinon.stub(connection, "execute").resolves(allProducts);
       const result = await productsModel.getAll();
-      expect(result).to.deep.equal(mocks.allProductsResponse);
+      expect(result).to.deep.equal(allProducts);
     })
 
     it("testa getById", async () => {
-      sinon.stub(connection, "execute").resolves(mocks.productSearchIdResponse)
+      const product = mocks.productSearchIdResponse;
+      sinon.stub(connection, "execute").resolves(product)
       const result = await productsModel.getById(1);
-      expect(result).to.deep.equal(mocks.productSearchIdResponse);
+      const prd = [result];
+      expect(prd).to.deep.equal(product);
     })
 
   });
