@@ -1,4 +1,5 @@
 const productModel = require('../models/productModel');
+const { validateRequestProducSchema } = require('./validations');
 
 const getAll = async () => {
   const products = await productModel.getAll();
@@ -14,6 +15,10 @@ const getById = async (id) => {
 }
 
 const create = async (name) => {
+  const isValidSchema = validateRequestProducSchema(name);
+
+  if (isValidSchema.type) return isValidSchema;
+
   const id = await productModel.create(name);
   const result = [{
     id,

@@ -33,6 +33,7 @@ const create = async (req, res) => {
   const { name } = req.body;
   try {
     const product = await productService.create(name);
+    if(product.type) return res.status(400).json(product);
     return res.status(201).json(product)
   } catch (error) {
     console.log(error);
