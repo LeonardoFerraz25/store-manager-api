@@ -8,6 +8,9 @@ A API desenvolvida é um sistema de gerenciamento de vendas no formato dropshipp
 
 ## Instalação
 
+<details>
+  <summary markdown="span"><strong>Intalando Aplicação</strong></summary><br />
+
 Para rodar está aplicação é necessário ter **Git**, **Docker** e o **Docker Compose** instalados no seu computador. O Docker Compose precisa estar na versão **1.29** ou superior.
 
 ### 1 - Clone o repositório
@@ -45,3 +48,4 @@ Executando aplicação:
 ```sh
 npm start
 ```
+</detail>
