@@ -13,7 +13,31 @@ const getById = async (id) => {
   return sale;
 }
 
+const create = async (date, productId, quantity) => {
+  const sale = await salesModel.create(date, productId, quantity);
+  return sale;
+}
+
+const update = async (id, date, productId, quantity) => {
+  const sale = await salesModel.update(id, date, productId, quantity);
+  if (sale === 0) {
+    return {message: "Sale not found"}
+  }
+  return sale;
+}
+
+const remove = async (id) => {
+  const sale = await salesModel.remove(id);
+  if (sale === 0) {
+    return {message: "Sale not found"}
+  }
+  return sale;
+}
+
 module.exports = {
   getAll,
-  getById
+  getById,
+  create,
+  update,
+  remove
 }
